@@ -1,0 +1,41 @@
+@import url('fonts/font-awesome.css');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: green;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}
+.appColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 1000px;
+	min-height: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.content {
+	padding: 120px 0;
+}
+.h2 {
+	text-align: center;
+}

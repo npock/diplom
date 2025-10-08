@@ -1,0 +1,13 @@
+.logoContainer {
+	display: flex;
+	color: #000;
+	text-decoration: none;
+}
+.largeText {
+	font-size: 32px;
+	font-weight: bold;
+}
+.smallText {
+	font-size: 18px;
+	font-weight: bold;
+}
