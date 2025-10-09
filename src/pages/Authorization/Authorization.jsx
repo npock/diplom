@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../store/actions/set-user';
 
-export const AuthorizationForm = () => {
+export const Authorization = () => {
 	const [userData, setUserData] = useState({
 		email: '',
 		password: '',
@@ -17,8 +17,8 @@ export const AuthorizationForm = () => {
 	const [serverError, setServerError] = useState(null);
 	const [firstSubmit, setFirstSubmit] = useState(true);
 	const dispatch = useDispatch();
-	const user = useSelector((state) => state);
-	console.log(user);
+	// const user = useSelector((state) => state);
+	// console.log(user);
 	// const navigate = useNavigate();
 
 	const userSchema = {
@@ -48,7 +48,7 @@ export const AuthorizationForm = () => {
 
 		const isValid = validate(userData);
 		if (!isValid) return;
-		console.log(userData);
+
 		server
 			.authorize(userData.email, userData.password)
 			.then(({ error, res }) => {

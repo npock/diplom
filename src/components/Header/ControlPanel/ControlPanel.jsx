@@ -8,11 +8,9 @@ import { logoutUser } from '../../../store/actions/logout';
 export const ControlPanel = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const userRoleId = useSelector((state) => state.roleId);
-	const user = useSelector((state) => state);
-	const userLogin = useSelector((state) => state.login);
-	const userSession = useSelector((state) => state.session);
-	console.log(user);
+	const userRoleId = useSelector((state) => state.user.roleId);
+	const userLogin = useSelector((state) => state.user.login);
+	const userSession = useSelector((state) => state.user.session);
 	return (
 		<div className={style.ControlPanelContainer}>
 			{userRoleId === ROLE.GUEST ? (
