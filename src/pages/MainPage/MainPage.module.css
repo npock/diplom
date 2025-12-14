@@ -1,0 +1,49 @@
+.productsСontainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	justify-content: center; /* Центрируем всю сетку */
+}
+
+.imageСard {
+	width: 200px;
+	height: 300px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+
+	/* Элемент списка становится флекс-контейнером для обертки */
+	display: flex;
+	flex-direction: column; /* Элементы внутри располагаются вертикально */
+	justify-content: center; /* Центрируем содержимое по вертикали */
+	align-items: center; /* Центрируем содержимое по горизонтали */
+}
+
+.contentWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 10px;
+}
+
+.imageСard img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+.caption {
+	margin-top: 10px;
+	font-size: 14px;
+	color: #555;
+}
+
+.imageCard:hover {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export const Weather = () => {
 	const [weather, setWeather] = useState({ name: '', main: {}, weather: [] });
-	const [error, setError] = useState(false);
+	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const fetchWeather = async () => {
@@ -15,7 +15,8 @@ export const Weather = () => {
 			setWeather({ name, main, weather });
 			setIsLoading(false);
 		} catch (error) {
-			setError(error);
+			console.log(error);
+			setError('ошибка в запросе на сервер погода');
 			setIsLoading(false);
 		}
 	};
@@ -39,13 +40,13 @@ export const Weather = () => {
 					month: 'long',
 				})}
 				<br />
-				{weather.name}
+				{weather?.name}
 				<br />
-				{weather.weather[0]?.description}
+				{weather?.weather[0]?.description}
 				<br />
-				влажность:{weather.main.humidity}
+				влажность:{weather?.main?.humidity}
 				<br />
-				температура:{Math.round(weather.main.temp)}
+				температура:{Math.round(weather?.main?.temp)}
 			</div>
 		</>
 	);

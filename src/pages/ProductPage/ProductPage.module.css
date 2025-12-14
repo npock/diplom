@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	flex-direction: column; /* Элементы в столбик */
+	/*justify-content: center;  Центрирует группу элементов по вертикали */
+	align-items: center; /* Центрирует каждый элемент по горизонтали */
+	padding-top: 10px;
+
+	min-height: 100vh; /* На всю высоту экрана, чтобы видеть центр */
+	gap: 20px;
+}

@@ -4,18 +4,20 @@ import { addUser } from './add-user';
 import { sessions } from './sessions';
 
 export const server = {
-	async logout(session) {
+	logout(session) {
 		sessions.remove(session);
 	},
-	async authorize(authLogin, authPassword) {
-		const user = await getUser(authLogin);
+
+	async authorize({ email, password }) {
+		const user = await getUser(email);
+		console.log(user);
 		if (!user) {
 			return {
 				error: 'такой пользователь не найден',
 				res: null,
 			};
 		}
-		if (authPassword !== user.password) {
+		if (password !== user.password) {
 			return {
 				error: 'неверый пароль',
 				res: null,
@@ -25,29 +27,33 @@ export const server = {
 		return {
 			error: null,
 			res: {
+				name: user.name,
 				id: user.id,
-				login: user.login,
+				email: user.email,
 				roleId: user.role_id,
 				session: sessions.create(user),
 			},
 		};
 	},
 
-	async register(regLogin, regPassword) {
-		const user = await getUser(regLogin);
-		if (user) {
+	async register(userData) {
+		const existedUser = await getUser(userData.email);
+
+		if (existedUser) {
 			return {
-				error: 'такой login уже занят',
+				error: 'такой email уже занят',
 				res: null,
 			};
 		}
-		await addUser(regLogin, regPassword);
+
+		const user = await addUser(userData);
 
 		return {
 			error: null,
 			res: {
+				name: user.name,
 				id: user.id,
-				login: user.login,
+				email: user.email,
 				roleId: user.role_id,
 				session: sessions.create(user),
 			},

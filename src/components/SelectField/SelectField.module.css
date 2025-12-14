@@ -1,0 +1,22 @@
+.error {
+  color: red;
+}
+.SelectContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+.Select {
+  border: 1px solid black;
+  padding: 10px 10px;
+  font-size: 14px;
+  color: black;
+  border-radius: 5px;
+  margin-left: 3px;
+  background-color: aliceblue;
+}
+.Label {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 3px;
+}

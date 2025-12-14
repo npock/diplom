@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { TextField } from '../../components/TextField/TextField';
-import style from './Authorization.module.css';
-import { validator } from './utils/validator';
-import { server } from '../../bff/server';
+import style from '../AuthReg.module.css';
+import { validator } from '../utils/validator';
 import { Button } from '../../components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../store/actions/set-user';
+import { ROLE } from '../../bff/constants/role';
+import { authUser } from '../../store/appReducers';
 
 export const Authorization = () => {
 	const [userData, setUserData] = useState({
@@ -14,12 +14,13 @@ export const Authorization = () => {
 		password: '',
 	});
 	const [formError, setFormError] = useState({});
-	const [serverError, setServerError] = useState(null);
-	const [firstSubmit, setFirstSubmit] = useState(true);
+	// const [serverError, setServerError] = useState(null);
+	const [firstSubmit, setFirstSubmit] = useState(false);
+	const serverError = useSelector((state) => state.user.error);
+
 	const dispatch = useDispatch();
-	// const user = useSelector((state) => state);
-	// console.log(user);
-	// const navigate = useNavigate();
+
+	// const user = useSelector((state) => state.user);
 
 	const userSchema = {
 		email: {
@@ -44,30 +45,27 @@ export const Authorization = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		setFirstSubmit(false);
+		setFirstSubmit(true);
 
 		const isValid = validate(userData);
 		if (!isValid) return;
+		dispatch(authUser(userData));
 
-		server
-			.authorize(userData.email, userData.password)
-			.then(({ error, res }) => {
-				if (error) {
-					setServerError(`error response ${error}`);
-					return;
-				}
-				dispatch({ type: 'SET_USER', payload: res });
-			});
+		// setUserData({
+		// 	email: '',
+		// 	password: '',
+		// });
 	};
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
 
-		if (!firstSubmit) {
+		if (firstSubmit) {
 			validate({ ...userData, [name]: value });
 		}
 		setUserData({ ...userData, [name]: value });
 	};
+
 	return (
 		<>
 			<form
@@ -100,6 +98,7 @@ export const Authorization = () => {
 				>
 					Войти
 				</Button>
+
 				{serverError && (
 					<div className={style.serverError}>
 						{serverError}

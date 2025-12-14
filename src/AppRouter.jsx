@@ -1,19 +1,81 @@
-import { Provider } from 'react-redux';
-import { Header } from './components/Header/Header';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { MainLayout } from './components/Loyouts/MainLoyuot';
+import { Suspense } from 'react';
+import { Users } from './pages/Users/Users';
 import { Authorization } from './pages/Authorization/Authorization';
-import { Route, Routes } from 'react-router-dom';
-import { Footer } from './components/Footer/Footer';
+import { Regisration } from './pages/Registration/Registration';
+import { UserLayout } from './components/Loyouts/UserLayout';
+import UserPage from './pages/UserPage/UserPage';
+import { MainPage } from './pages/MainPage/MainPage';
+import { ProductPage } from './pages/ProductPage/ProductPage';
+import EditUserPage from './pages/EditUserPage/EditUserPage';
+import { Basket } from './pages/Basket/BasKet';
 
-export const AppRouter = () => {
-	return (
-		<Routes>
-			<Route path="/" element={<div>mainPage</div>} />
-			<Route path="/login" element={<Authorization />} />
-			<Route path="/register" element={<div>registration</div>} />
-			<Route path="/users" element={<div>users</div>} />
-			<Route path="/product" element={<div>new product</div>} />
-			<Route path="/product/product_id" element={<div>product</div>} />
-			<Route path="*" element={<div>error</div>} />
-		</Routes>
-	);
-};
+export const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <MainLayout />,
+		children: [
+			{
+				index: true,
+				element: <MainPage />,
+			},
+			{
+				path: '/:id',
+				element: <ProductPage />,
+				// children: [
+				// 	{
+				// 		index: true,
+
+				// 		element: <UserPage />,
+				// 	},
+				// 	{
+				// 		path: 'edit',
+
+				// 		//  element: <EditPage />,
+				// 	},
+				// ],
+			},
+			{
+				path: '/login',
+				element: <Authorization />,
+			},
+			{
+				path: '/register',
+				element: <Regisration />,
+			},
+			{
+				path: '/users',
+				element: <Users />,
+			},
+			{
+				path: '/user/:id',
+				element: <UserLayout />,
+				children: [
+					{
+						index: true,
+
+						element: <UserPage />,
+					},
+					{
+						path: 'edit',
+
+						element: <EditUserPage />,
+					},
+				],
+			},
+			{
+				path: '/product/:id',
+				element: <div>new product</div>,
+			},
+			{
+				path: '/basket',
+				element: <Basket />,
+			},
+		],
+	},
+]);
+
+// export const AppRouter = () => {
+// 	return <RouterProvider router={router} />;
+// };

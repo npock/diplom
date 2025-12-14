@@ -1,9 +1,8 @@
 import { Provider } from 'react-redux';
 import { createStore } from './store/createStore';
-import { useNavigate } from 'react-router-dom';
+import { router } from './AppRouter';
 
 export const AppProvider = ({ children }) => {
-	const navigate = useNavigate();
-	const store = createStore(navigate);
+	const store = createStore(router);
 	return <Provider store={store}>{children}</Provider>;
 };

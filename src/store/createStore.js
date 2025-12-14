@@ -1,28 +1,38 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
-//import { appReducer } from './appReducer';
-import { thunk, withExtraArgument } from './thunk';
+import {
+	applyMiddleware,
+	combineReducers,
+	compose,
+	legacy_createStore,
+} from 'redux';
+import { withExtraArgument } from './thunk';
 import {
 	userReducer,
 	usersReducer,
-	postReducer,
-	postsReducer,
+	productReducer,
+	productsReducer,
+	rolesReducer,
 } from './appReducers';
-// import { thunk } from 'redux-thunk';
 
 const appReducer = combineReducers({
 	user: userReducer,
-	//users: usersReducer,
-	post: postReducer,
-	//posts: postsReducer,
+	users: usersReducer,
+	product: productReducer,
+	products: productsReducer,
+	roles: rolesReducer,
 });
 
-export const createStore = (navigate) => {
-	// const store = legacy_createStore(
-	// 	userReducer,
-	// 	withExtraArgument({ navigate }),
-	// );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-	const store = legacy_createStore(appReducer, applyMiddleware(thunk));
-
+export const createStore = (router) => {
+	const store = legacy_createStore(
+		appReducer,
+		composeEnhancers(applyMiddleware(withExtraArgument({ router }))),
+	);
+	store.subscribe(() => {
+		sessionStorage.setItem(
+			'user',
+			JSON.stringify(store.getState().user.authUser),
+		);
+	});
 	return store;
 };
