@@ -14,6 +14,19 @@ const validateRules = {
 	checkPassword: (value, _, password) => {
 		return value === password;
 	},
+	isNumber: (value) => {
+		return value !== '' && !isNaN(parseFloat(value)) && isFinite(value);
+	},
+	minNum: (value, min) => {
+		return Number(value) >= min;
+	},
+	maxNum: (value, max) => {
+		return Number(value) <= max;
+	},
+	isLink: (value) => {
+		const pattern = /^(https?:\/\/)?([\w\d-]+\.)+[\w-]+(\/.*)?$/i;
+		return pattern.test(value);
+	},
 };
 
 export const validator = (values, config) => {

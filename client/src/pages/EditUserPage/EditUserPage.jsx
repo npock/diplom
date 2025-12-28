@@ -101,8 +101,7 @@ export const EditUserPage = () => {
 						сохранить
 					</Button>
 				</form>
-				<p className="">👤 Имя: {authUser?.name}</p>
-				<p className="">📧 Email: {authUser?.email}</p>
+
 				<p className=""> Дата регистрации: {authUser?.createdAt}</p>
 				<p className=""> Role: {authUser?.role}</p>
 

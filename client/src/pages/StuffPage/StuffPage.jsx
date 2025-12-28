@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct } from '../../store/appReducers';
-import style from './ProductPage.module.css';
+import style from './StuffPage.module.css';
+import { fetchOneStuff } from '../../store/appReducers';
+import { ReviewsSection } from './EditStuffPage/components/ReviewsSection';
 
-export const ProductPage = () => {
+export const StuffPage = () => {
 	const { id } = useParams();
 
 	const dispatch = useDispatch();
-
-	const product = useSelector((state) => state.product.product);
-	const error = useSelector((state) => state.product.error);
-	const isLoading = useSelector((state) => state.product.isLoading);
+	const authUser = useSelector((state) => state.user.authUser);
+	const stuff = useSelector((state) => state.oneStuff.oneStuff);
+	const error = useSelector((state) => state.oneStuff.error);
+	const isLoading = useSelector((state) => state.oneStuff.isLoading);
 
 	const addToBasket = (idStuff) => {
 		const currentStuffString = localStorage.getItem('stuff');
@@ -48,7 +49,7 @@ export const ProductPage = () => {
 	};
 
 	useEffect(() => {
-		dispatch(fetchProduct(id));
+		dispatch(fetchOneStuff(id));
 	}, [id, dispatch]);
 
 	if (isLoading) {
@@ -60,11 +61,19 @@ export const ProductPage = () => {
 
 	return (
 		<div className={style.container}>
-			<p className=""> Название товара: {product?.title}</p>
-			<img src={product.image_url} />
-			<p className="">Описание: {product?.description}</p>
-			<p className=""> Дата добавления : {product?.published_at}</p>
+			<p className=""> Название товара: {stuff?.name}</p>
+			<img src={stuff.image_url} />
+			<p className="">цена: {stuff?.price}</p>
+			<p className="">Описание: {stuff?.description}</p>
+			<p className=""> Дата добавления : {stuff?.createdAt}</p>
 			<button onClick={() => addToBasket(id)}>В корзину</button>
+
+			<ReviewsSection stuffId={id} />
+
+			{(authUser.role === 'moderator' && stuff.author === id) ||
+			authUser.role === 'admin' ? (
+				<Link to={`/stuff/${stuff._id}/edit`}>Edit</Link>
+			) : null}
 		</div>
 	);
 };

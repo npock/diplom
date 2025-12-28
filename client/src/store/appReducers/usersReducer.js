@@ -45,7 +45,7 @@ export const usersReducer = (state = initialUserState, { type, payload }) => {
 				error: payload,
 			};
 		}
-		case 'UPDATE__USER__SUCCESS': {
+		case 'UPDATE__ROLE__USER__SUCCESS': {
 			const index = state.users.findIndex(
 				(user) => user._id === payload._id,
 			);
@@ -58,13 +58,13 @@ export const usersReducer = (state = initialUserState, { type, payload }) => {
 				users: newUsers,
 			};
 		}
-		case 'UPDATE__USER__LOADING': {
+		case 'UPDATE__ROLE__USER__LOADING': {
 			return {
 				...state,
 				isLoading: true,
 			};
 		}
-		case 'UPDATE__USER__ERROR': {
+		case 'UPDATE__ROLE__USER__ERROR': {
 			return {
 				...state,
 				isLoading: false,
@@ -154,7 +154,7 @@ export const getUserById = (id) => async (dispatch) => {
 
 export const updateRoleUserAsync = (id, payload) => async (dispatch) => {
 	dispatch({
-		type: 'UPDATE__USER__LOADING',
+		type: 'UPDATE__ROLE__USER__LOADING',
 	});
 	try {
 		const response = await fetch(
@@ -175,13 +175,13 @@ export const updateRoleUserAsync = (id, payload) => async (dispatch) => {
 		const { userData, message } = await response.json();
 		console.log(message);
 		dispatch({
-			type: 'UPDATE__USER__SUCCESS',
+			type: 'UPDATE__ROLE__USER__SUCCESS',
 			payload: userData,
 		});
 	} catch (error) {
 		console.log(error);
 		dispatch({
-			type: 'UPDATE__USER__ERROR',
+			type: 'UPDATE__ROLE__USER__ERROR',
 			payload: 'ошибка в запросе на сервер при изменении user',
 		});
 	}

@@ -1,0 +1,55 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.label {
+	font-size: 14px;
+	font-weight: 600;
+	color: #4b5563;
+	margin-left: 4px;
+}
+
+.textarea {
+	width: 100%;
+	min-height: 120px;
+	padding: 12px 16px;
+	border-radius: 12px;
+	border: 2px solid #e5e7eb;
+	background-color: #f9fafb;
+	color: #1f2937;
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 1.5;
+	resize: vertical;
+	transition: all 0.2s ease-in-out;
+	outline: none;
+}
+
+.textarea:hover {
+	border-color: #d1d5db;
+}
+
+.textarea:focus {
+	background-color: #ffffff;
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.textarea::placeholder {
+	color: #9ca3af;
+	font-style: italic;
+}
+
+.errorField {
+	border-color: #ef4444;
+}
+
+.errorMessage {
+	font-size: 12px;
+	color: #ef4444;
+	margin-left: 4px;
+}

@@ -26,9 +26,11 @@ export default function UserPage() {
 				<p className=""> Role: {authUser?.role}</p>
 
 				<Link to={`/users/${authUser._id}/edit`}>Edit</Link>
-				<button className="" onClick={() => navigate(-1)}>
+				<button className="" onClick={() => navigate('/')}>
 					back
 				</button>
+				<Link to={`/saleStuff`}>Мои товары</Link>
+				<Link to={'/myReviews'}>My reviews</Link>
 			</div>
 		</div>
 	);

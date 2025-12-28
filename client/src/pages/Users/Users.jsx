@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { deleteUser, fetchUsers } from '../../store/appReducers';
-import { Link } from 'react-router-dom';
 import { RoleEdit } from './RoleEdit';
 
 export const Users = () => {
 	const dispatch = useDispatch();
 	const users = useSelector((state) => state.users.users);
-	const errorUpdateUser = useSelector((state) => state.users.error);
-	const errorRoles = useSelector((state) => state.roles.error);
 
 	const standartTime = (dateString) => {
 		const date = new Date(dateString);
@@ -42,11 +39,12 @@ export const Users = () => {
 		delete: {
 			name: 'Удалить',
 			component: (item) => {
-				return (
-					<button onClick={() => dispatch(deleteUser(item._id))}>
-						Удалить
-					</button>
-				);
+				if (item.role !== 'admin')
+					return (
+						<button onClick={() => dispatch(deleteUser(item._id))}>
+							Удалить
+						</button>
+					);
 			},
 		},
 	};
@@ -90,8 +88,6 @@ export const Users = () => {
 					})}
 				</tbody>
 			</table>
-			{errorRoles && <span>{errorRoles}</span>}
-			{errorUpdateUser && <span>{errorUpdateUser}</span>}
 		</>
 	);
 };

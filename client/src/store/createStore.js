@@ -8,17 +8,17 @@ import { withExtraArgument } from './thunk';
 import {
 	authUserReducer,
 	usersReducer,
-	productReducer,
-	productsReducer,
-	rolesReducer,
+	oneStuffReducer,
+	stuffReducer,
+	reviewsReducer,
 } from './appReducers';
 
 const appReducer = combineReducers({
 	user: authUserReducer,
 	users: usersReducer,
-	product: productReducer,
-	products: productsReducer,
-	roles: rolesReducer,
+	oneStuff: oneStuffReducer,
+	stuff: stuffReducer,
+	reviews: reviewsReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

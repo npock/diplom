@@ -1,0 +1,79 @@
+.container {
+	max-width: 900px;
+	margin: 40px auto;
+	padding: 20px;
+}
+
+.card {
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	margin-bottom: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	border: 1px solid #f3f4f6;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.stuffLink {
+	color: #3b82f6;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.stuffLink:hover {
+	text-decoration: underline;
+}
+
+.stars {
+	color: #fbbf24;
+	margin-bottom: 8px;
+}
+
+.deleteBtn {
+	background: #fef2f2;
+	color: #ef4444;
+	border: 1px solid #fee2e2;
+	padding: 6px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	transition: 0.2s;
+}
+
+.deleteBtn:hover {
+	background: #fee2e2;
+}
+.editBtn {
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+.editBtn {
+	color: #3b82f6;
+}
+
+.saveBtn {
+	background: #10b981;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.cancelBtn {
+	background: #f3f4f6;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+}

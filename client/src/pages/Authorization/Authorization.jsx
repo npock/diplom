@@ -47,10 +47,10 @@ export const Authorization = () => {
 		dispatch(login(userData));
 		setFirstSubmit(true);
 
-		setUserData({
-			email: '',
-			password: '',
-		});
+		// setUserData({
+		// 	email: '',
+		// 	password: '',
+		// });
 	};
 
 	const handleChange = (e) => {

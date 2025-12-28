@@ -1,16 +1,20 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainLayout } from './components/Loyouts/MainLoyuot';
-import { Suspense } from 'react';
 import { Users } from './pages/Users/Users';
 import { Authorization } from './pages/Authorization/Authorization';
 import { Regisration } from './pages/Registration/Registration';
 import { UserLayout } from './components/Loyouts/UserLayout';
 import UserPage from './pages/UserPage/UserPage';
 import { MainPage } from './pages/MainPage/MainPage';
-import { ProductPage } from './pages/ProductPage/ProductPage';
 import { EditUserPage } from './pages/EditUserPage/EditUserPage';
 import { Basket } from './pages/Basket/BasKet';
 import { AdminRoute } from './AdminRoute';
+import { NewStuffPage } from './pages/NewStuffPage/NewStuffPage';
+import { StuffPage } from './pages/StuffPage/StuffPage';
+import { EditStuffPage } from './pages/StuffPage/EditStuffPage/EditStuffPage';
+import { ModeratorRoute } from './ModeratorRote';
+import { SaleStuff } from './pages/SaleStuff/SaleStuff';
+import { MyReviews } from './pages/UserPage/MyReviews/MyReviews';
 
 export const router = createBrowserRouter([
 	{
@@ -22,20 +26,24 @@ export const router = createBrowserRouter([
 				element: <MainPage />,
 			},
 			{
-				path: '/:id',
-				element: <ProductPage />,
-				// children: [
-				// 	{
-				// 		index: true,
+				path: '/stuff/:id',
+				// element: <StuffPage />,
+				children: [
+					{
+						index: true,
 
-				// 		element: <UserPage />,
-				// 	},
-				// 	{
-				// 		path: 'edit',
+						element: <StuffPage />,
+					},
+					{
+						path: 'edit',
 
-				// 		//  element: <EditPage />,
-				// 	},
-				// ],
+						element: (
+							<ModeratorRoute>
+								<EditStuffPage />
+							</ModeratorRoute>
+						),
+					},
+				],
 			},
 			{
 				path: '/login',
@@ -70,12 +78,20 @@ export const router = createBrowserRouter([
 				],
 			},
 			{
-				path: '/product',
-				element: <div>new product</div>,
+				path: '/newStuff',
+				element: <NewStuffPage />,
 			},
 			{
 				path: '/basket',
 				element: <Basket />,
+			},
+			{
+				path: '/saleStuff',
+				element: <SaleStuff />,
+			},
+			{
+				path: '/myReviews',
+				element: <MyReviews />,
 			},
 		],
 	},

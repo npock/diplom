@@ -29,7 +29,9 @@ export const ControlPanel = () => {
 				</Link>
 			) : (
 				<>
-					<Link to={`users/:${id}`}>{userLogin}</Link>
+					<Link className={style.user} to={`users/:${id}`}>
+						{userLogin}
+					</Link>
 					<div className={style.buttonLogout} onClick={signOut}>
 						<Icon id="fa-sign-out" margin="10px 0 0 0" />
 					</div>
@@ -42,7 +44,7 @@ export const ControlPanel = () => {
 				</div>
 				{role === 'admin' ? (
 					<>
-						<Link to="/product">
+						<Link to="/newStuff">
 							<Icon id="fa-plus" margin="10px 0 0 15px" />
 						</Link>
 						<Link to="/users">

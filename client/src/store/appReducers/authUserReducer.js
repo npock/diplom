@@ -94,7 +94,7 @@ export const authUserReducer = (
 			};
 		}
 
-		case 'UPDATE__USER__LOADING': {
+		case 'UPDATE_AUTH_USER_LOADING': {
 			return {
 				...state,
 				isLoading: true,
@@ -102,14 +102,14 @@ export const authUserReducer = (
 			};
 		}
 
-		case 'UPDATE__USER__SUCCESS': {
+		case 'UPDATE_AUTH_USER_SUCCESS': {
 			return {
 				...state,
 				isLoading: false,
 				authUser: payload,
 			};
 		}
-		case 'UPDATE__USER__ERROR': {
+		case 'UPDATE_AUTH_USER_ERROR': {
 			return {
 				...state,
 				isLoading: false,
@@ -223,7 +223,7 @@ export const getMe = () => async (dispatch) => {
 			throw new Error(response.statusText);
 		}
 		const { userData, message } = await response.json();
-		console.log(message, userData);
+		console.log(message);
 		dispatch({
 			type: 'GET_ME_SUCCESS',
 			payload: { authUser: userData, isLoading: false, error: null },
@@ -236,7 +236,7 @@ export const getMe = () => async (dispatch) => {
 
 export const updateAuthUserAsync = (id, payload) => async (dispatch) => {
 	dispatch({
-		type: 'UPDATE_USER_LOADING',
+		type: 'UPDATE_AUTH_USER_LOADING',
 	});
 	try {
 		const response = await fetch(
@@ -255,13 +255,14 @@ export const updateAuthUserAsync = (id, payload) => async (dispatch) => {
 			throw new Error(response.statusText);
 		}
 		const { userData, message } = await response.json();
-		console.log(message, userData);
+		console.log(message);
 		dispatch({
-			type: 'UPDATE_USER_SUCCESS',
+			type: 'UPDATE_AUTH_USER_SUCCESS',
 			payload: userData,
 		});
+		// extra.router.navigate(`/users/${id}`);
 	} catch (e) {
 		console.log(e);
-		dispatch({ type: 'UPDATE_USER_ERROR', payload: e.message });
+		dispatch({ type: 'UPDATE_AUTH_USER_ERROR', payload: e.message });
 	}
 };

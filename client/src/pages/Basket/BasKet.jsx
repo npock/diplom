@@ -1,53 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import './Basket.css'; // Подключаем стили
+import React, { useEffect } from 'react';
+import './Basket.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductsByIds } from '../../store/appReducers';
-
-// Мок-данные (имитация товаров в корзине)
+import { fetchStuffByIds } from '../../store/appReducers';
 
 export const Basket = () => {
 	const stuff = JSON.parse(localStorage.getItem('stuff'));
 	const productsInBasket = useSelector(
-		(state) => state.products.productsInBasket,
+		(state) => state.stuff.productsInBasket,
 	);
 
-	const [totalPrice, setTotalPrice] = useState();
-	const [render, setRender] = useState(false);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchProductsByIds(stuff));
-		totalSetPrice();
-	}, [render]);
+		dispatch(fetchStuffByIds(stuff));
+	}, [dispatch]);
 
-	const totalSetPrice = () => {
-		const total = stuff.reduce(
-			(sum, item) => sum + Number(item.price) * item.quantity,
-			0,
-		);
-		setTotalPrice(total);
-		return total;
+	const finalPrice = productsInBasket.reduce(
+		(sum, item) => sum + item.price * item.quantity,
+		0,
+	);
+
+	const updateBasket = (updatedItems) => {
+		const forStorage = updatedItems.map((item) => ({
+			id: item._id || item.id,
+			quantity: item.quantity,
+		}));
+		localStorage.setItem('stuff', JSON.stringify(forStorage));
+
+		dispatch(fetchStuffByIds(forStorage));
 	};
 
 	const handleRemoveItem = (itemId) => {
-		const newProducts = productsInBasket.filter(
-			(item) => item.id !== itemId,
-		);
+		const newProducts = productsInBasket
+			.filter((item) => item._id !== itemId)
+			.map((item) => ({
+				id: item._id,
+				quantity: item.quantity,
+			}));
 		localStorage.setItem('stuff', JSON.stringify(newProducts));
-		setRender((prevState) => !prevState);
+		updateBasket(newProducts);
 	};
 
 	const handleQuantityChange = (itemId, change) => {
 		const newProducts = productsInBasket.map((item) => {
-			if (item.id === itemId) {
+			if (item._id === itemId) {
 				const newQuantity = item.quantity + change;
-				return { ...item, quantity: Math.max(1, newQuantity) };
+				return { id: item._id, quantity: Math.max(1, newQuantity) };
 			}
-			return item;
+			return { id: item._id, quantity: item.quantity };
 		});
-		localStorage.setItem('stuff', JSON.stringify(newProducts));
 
-		setRender((prevState) => !prevState);
+		localStorage.setItem('stuff', JSON.stringify(newProducts));
+		updateBasket(newProducts);
 	};
 
 	if (productsInBasket.length === 0) {
@@ -64,28 +68,30 @@ export const Basket = () => {
 			<h1>Ваша корзина</h1>
 			<div className="cart-items-list">
 				{productsInBasket.map((item) => (
-					<div key={item.id} className="cart-item">
+					<div key={item._id} className="cart-item">
 						<div className="item-details">
-							<h3>{item.title}</h3>
-							<p>Цена: {item.price.toLocaleString()} ₽</p>
+							<h3>{item.name}</h3>
+							<p>Цена: {item.price} ₽</p>
 						</div>
 						<div className="item-controls">
 							<button
 								onClick={() =>
-									handleQuantityChange(item.id, -1)
+									handleQuantityChange(item._id, -1)
 								}
 							>
 								-
 							</button>
 							<span>{item.quantity} шт.</span>
 							<button
-								onClick={() => handleQuantityChange(item.id, 1)}
+								onClick={() =>
+									handleQuantityChange(item._id, 1)
+								}
 							>
 								+
 							</button>
 							<button
 								className="remove-btn"
-								onClick={() => handleRemoveItem(item.id)}
+								onClick={() => handleRemoveItem(item._id)}
 							>
 								Удалить
 							</button>
@@ -95,7 +101,7 @@ export const Basket = () => {
 			</div>
 
 			<div className="cart-summary">
-				<h2>Итого: {totalPrice.toLocaleString()} ₽</h2>
+				<h2>Итого: {finalPrice} ₽</h2>
 				<button className="checkout-btn">Оформить заказ</button>
 			</div>
 		</div>
