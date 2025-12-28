@@ -160,7 +160,7 @@ export const fetchStuff =
 				`http://localhost:3005/api/v1/stuff?${queryString}`,
 			);
 			const { data, message } = await response.json();
-			console.log(message, data);
+			console.log(message);
 			dispatch({ type: 'FETCH_STUFFS_SUCCESS', payload: data });
 		} catch (e) {
 			dispatch({ type: 'FETCH_STUFFS_ERROR', payload: e.message });
