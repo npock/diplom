@@ -12,10 +12,11 @@ import { AdminRoute } from './AdminRoute';
 import { NewStuffPage } from './pages/NewStuffPage/NewStuffPage';
 import { StuffPage } from './pages/StuffPage/StuffPage';
 import { EditStuffPage } from './pages/StuffPage/EditStuffPage/EditStuffPage';
-import { ModeratorRoute } from './ModeratorRote';
+import { ModeratorRoute } from './ModeratorRoute';
 import { SaleStuff } from './pages/SaleStuff/SaleStuff';
 import { MyReviews } from './pages/UserPage/MyReviews/MyReviews';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
+import { IsAuthRoute } from './IsAuthRoute';
 
 export const router = createBrowserRouter([
 	{
@@ -64,7 +65,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/users/:id',
-				element: <UserLayout />,
+				element: (
+					<IsAuthRoute>
+						<UserLayout />
+					</IsAuthRoute>
+				),
 				children: [
 					{
 						index: true,
@@ -92,7 +97,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/myReviews',
-				element: <MyReviews />,
+				element: (
+					<IsAuthRoute>
+						<MyReviews />
+					</IsAuthRoute>
+				),
 			},
 			{
 				path: '*',

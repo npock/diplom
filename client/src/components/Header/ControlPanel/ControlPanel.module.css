@@ -9,12 +9,35 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 18px;
+	font-size: 16px; /* 18px может быть многовато для высоты 32px */
 	width: 150px;
 	height: 32px;
 	color: #000;
 	background-color: #eee;
-	border: 1px solid black;
+	border: 1px solid #000;
+	border-radius: 6px; /* Немного скруглим углы для современного вида */
+	cursor: pointer;
+	transition: all 0.2s ease; /* Плавный переход при наведении */
+	font-weight: 500;
+	text-decoration: none; /* Если это ссылка <a> */
+}
+
+/* Эффект при наведении */
+.ButttonSign:hover {
+	background-color: #ddd; /* Немного темнее */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Эффект при нажатии */
+.ButttonSign:active {
+	transform: translateY(1px); /* Визуальный отклик на клик */
+	background-color: #ccc;
+}
+
+/* Если это настоящий тег <button>, добавим сброс */
+button.ButttonSign {
+	outline: none;
+	padding: 0;
 }
 .rightAlign {
 	display: flex;
