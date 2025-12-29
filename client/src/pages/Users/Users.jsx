@@ -43,7 +43,7 @@ export const Users = () => {
 				if (item.role !== 'admin')
 					return (
 						<Button
-							className={'delete'}
+							className="delete"
 							onClick={() => dispatch(deleteUser(item._id))}
 						>
 							Удалить

@@ -114,7 +114,7 @@ export const EditStuffPage = () => {
 
 	return (
 		<div className="container" style={containerStyle}>
-			<h2>Добавление нового товара</h2>
+			<h2>Редактирование товара</h2>
 			<form onSubmit={handleSubmit}>
 				<TextField
 					label="Название товара"
@@ -159,7 +159,7 @@ export const EditStuffPage = () => {
 					{isLoading && !isValid ? 'Загрузка...' : 'Сохранить'}
 				</Button>
 				<Button
-					className={'delete'}
+					className="delete"
 					onClick={() => dispatch(deleteStuffAsync(id))}
 				>
 					Delete
