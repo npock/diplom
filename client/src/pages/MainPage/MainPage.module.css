@@ -1,49 +1,63 @@
 .productsСontainer {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 20px;
+	gap: 25px; /* Увеличили для свежести */
 	list-style: none;
 	margin: 0;
-	padding: 0;
-	justify-content: center; /* Центрируем всю сетку */
+	padding: 20px 0;
+	justify-content: center;
 }
 
-.imageСard {
+.imageCard {
+	/* Фиксированный размер карточки */
 	width: 200px;
-	height: 300px;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
+	height: 350px; /* Увеличили высоту, чтобы влез и текст под фото */
 
-	/* Элемент списка становится флекс-контейнером для обертки */
+	text-decoration: none; /* Убираем подчеркивание ссылки */
+	border: 1px solid #eee;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+	overflow: hidden;
+	background: #fff;
+	transition: all 0.3s ease;
+
 	display: flex;
-	flex-direction: column; /* Элементы внутри располагаются вертикально */
-	justify-content: center; /* Центрируем содержимое по вертикали */
-	align-items: center; /* Центрируем содержимое по горизонтали */
+	flex-direction: column;
+}
+
+/* Эффект при наведении */
+.imageCard:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .contentWrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	padding: 10px;
+	height: 100%;
 }
 
-.imageСard img {
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: contain;
+.contentWrapper img {
+	/* Фото всегда занимает 200x260px */
+	width: 200px;
+	height: 260px;
+
+	/* ГЛАВНОЕ: заполняет область 200x260, сохраняя пропорции */
+	object-fit: cover;
+
+	border-bottom: 1px solid #f0f0f0;
 }
 
 .caption {
-	margin-top: 10px;
+	padding: 12px 10px;
 	font-size: 14px;
-	color: #555;
-}
+	font-weight: 500;
+	color: #333;
+	text-align: center;
 
-.imageCard:hover {
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	/* Если название слишком длинное — обрезаем красиво */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
 }
