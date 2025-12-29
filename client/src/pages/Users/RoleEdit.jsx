@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SelectField } from '../../components/SelectField/SelectField';
 import { updateRoleUserAsync } from '../../store/appReducers';
 import { useDispatch } from 'react-redux';
+import { Button } from '../../components/Button/Button';
 
 export const RoleEdit = ({ role, id }) => {
 	const [newRole, setNewRole] = useState({ role });
@@ -33,7 +34,7 @@ export const RoleEdit = ({ role, id }) => {
 						value={newRole.role}
 					/>
 				}
-				<Button className="" type="submit">
+				<Button className="primary" type="submit">
 					Сохранить
 				</Button>
 			</form>
