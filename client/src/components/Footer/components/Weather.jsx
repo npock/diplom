@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import styles from './Weather.module.css'; // Импорт стилей
 
 export const Weather = () => {
-	const [weather, setWeather] = useState({ name: '', main: {}, weather: [] });
+	const [weather, setWeather] = useState(null);
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -11,12 +12,13 @@ export const Weather = () => {
 			const res = await fetch(
 				'https://api.openweathermap.org/data/2.5/weather?q=Voronezh&units=metric&lang=ru&appid=7ba89d2e23e99ac79b92616d20476811',
 			);
-			const { name, main, weather } = await res.json();
-			setWeather({ name, main, weather });
-			setIsLoading(false);
+			if (!res.ok) throw new Error();
+			const data = await res.json();
+			setWeather(data);
 		} catch (error) {
 			console.log(error);
-			setError('ошибка в запросе на сервер погода');
+			setError('Ошибка погоды');
+		} finally {
 			setIsLoading(false);
 		}
 	};
@@ -25,29 +27,26 @@ export const Weather = () => {
 		fetchWeather();
 	}, []);
 
-	if (isLoading) {
-		return <>loading...</>;
-	}
-	if (error) {
-		return <>{error}</>;
-	}
+	if (isLoading)
+		return <div className={styles.weatherContainer}>Загрузка...</div>;
+	if (error || !weather) return null; // Если ошибка, лучше просто скрыть виджет
+
 	return (
-		<>
-			{' '}
-			<div>
+		<div className={styles.weatherContainer}>
+			<div className={styles.date}>
 				{new Date().toLocaleString('ru', {
 					day: 'numeric',
 					month: 'long',
 				})}
-				<br />
-				{weather?.name}
-				<br />
-				{weather?.weather[0]?.description}
-				<br />
-				влажность:{weather?.main?.humidity}
-				<br />
-				температура:{Math.round(weather?.main?.temp)}
 			</div>
-		</>
+			<div className={styles.city}>{weather.name}</div>
+			<div className={styles.temp}>{Math.round(weather.main.temp)}°C</div>
+			<div className={styles.description}>
+				{weather.weather[0]?.description}
+			</div>
+			<div style={{ fontSize: '11px', opacity: 0.7 }}>
+				Влажность: {weather.main.humidity}%
+			</div>
+		</div>
 	);
 };

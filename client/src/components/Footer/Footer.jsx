@@ -3,16 +3,20 @@ import style from './Footer.module.css';
 
 export const Footer = () => {
 	return (
-		<div className={style.footer}>
+		<footer className={style.footer}>
 			<div>
-				<div className="blue">магазин</div>
-				<div>web@shop.ru</div>
+				<div className={style.blueTitle}>МАГАЗИН</div>
+				<div className={style.email}>web@shop.ru</div>
 			</div>
+
 			<div>
 				<div></div>
 				<div></div>
 			</div>
-			<Weather />
-		</div>
+
+			<div className={style.weatherWrapper}>
+				<Weather />
+			</div>
+		</footer>
 	);
 };

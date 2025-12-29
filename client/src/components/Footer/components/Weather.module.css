@@ -1,0 +1,35 @@
+.weatherContainer {
+	font-size: 13px;
+	line-height: 1.4;
+	color: #546e7a; /* Мягкий серо-голубой */
+	text-align: right; /* Прижимаем текст к правому краю футера */
+	padding: 5px 10px;
+	border-left: 2px solid #e3f2fd; /* Голубая черта-разделитель */
+	background: rgba(227, 242, 253, 0.2); /* Очень бледный голубой фон */
+	border-radius: 8px;
+	min-width: 140px;
+}
+
+.date {
+	font-weight: 700;
+	color: #0091ff; /* Синий акцент */
+	text-transform: capitalize;
+	margin-bottom: 2px;
+}
+
+.city {
+	font-weight: 600;
+	color: #2d3436;
+}
+
+.temp {
+	font-size: 16px;
+	font-weight: 800;
+	color: #2d3436;
+}
+
+.description {
+	font-style: italic;
+	font-size: 12px;
+	color: #b2bec3;
+}

@@ -1,10 +1,45 @@
 .footer {
+	/* Ваша структура */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 1000px;
 	height: 120px;
 	padding: 20px 40px;
-	background-color: white;
-	box-shadow: 0 0 2px #000;
+
+	/* Центрирование блока на странице */
+	margin: 40px auto 0;
+
+	/* Цвета и "чистый" стиль */
+	background-color: #ffffff;
+	/* Вместо тени — тонкая нежно-голубая линия сверху */
+	border-top: 2px solid #e3f2fd;
+
+	/* Очень легкое голубое свечение (заменяет черную тень) */
+	box-shadow: 0 -5px 15px rgba(227, 242, 253, 0.5);
+
+	font-family: sans-serif;
+}
+
+/* Название магазина (класс "blue" из вашего JSX) */
+.blueTitle {
+	color: #0091ff; /* Светло-голубой акцент */
+	font-weight: 700;
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+
+/* Текст почты и другие второстепенные данные */
+.email {
+	color: #546e7a; /* Мягкий серо-голубой */
+	font-size: 14px;
+}
+
+/* Контейнер для погодного виджета (чтобы он не прыгал) */
+.weatherWrapper {
+	min-width: 150px;
+	display: flex;
+	justify-content: flex-end;
 }
