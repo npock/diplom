@@ -66,12 +66,20 @@ export const NewStuffPage = () => {
 		setData({ name: '', price: '', description: '', image_url: '' });
 	};
 
+	const containerStyle = {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		minHeight: '80vh',
+	};
+
 	useEffect(() => {
 		dispatch({ type: 'ISLOADING_FALSE' });
 	}, [dispatch]);
 
 	return (
-		<div className="container">
+		<div className="container" style={containerStyle}>
 			<h2>Добавление нового товара</h2>
 			<form onSubmit={handleSubmit}>
 				<TextField
@@ -108,8 +116,8 @@ export const NewStuffPage = () => {
 					placeholder="Опишите товар"
 				/>
 
-				<Button type="submit" disabled={!isValid && isLoading}>
-					{isLoading && !isValid ? 'Загрузка...' : 'Добавить товар'}
+				<Button type="submit" disabled={!isValid || isLoading}>
+					{isLoading || !isValid ? 'Загрузка...' : 'Добавить товар'}
 				</Button>
 			</form>
 		</div>

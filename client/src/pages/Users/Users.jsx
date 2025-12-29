@@ -57,13 +57,22 @@ export const Users = () => {
 			return item[column];
 		}
 	};
+	const containerStyle = {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		minHeight: '80vh',
+		paddingTop: '40px',
+		marginTop: '30px',
+	};
 
 	useEffect(() => {
 		dispatch(fetchUsers());
 	}, [dispatch]);
 
 	return (
-		<>
+		<div style={containerStyle}>
 			<h2>Пользователи</h2>
 
 			<table>
@@ -88,6 +97,6 @@ export const Users = () => {
 					})}
 				</tbody>
 			</table>
-		</>
+		</div>
 	);
 };

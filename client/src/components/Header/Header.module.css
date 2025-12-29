@@ -1,15 +1,44 @@
 .header {
+	/* Ваша исходная форма */
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	position: fixed;
 	top: 0;
+	left: 50%;
+	transform: translateX(-50%); /* Центрируем блок 1000px */
 	width: 1000px;
-	height: 120px;
-	padding: 20px 40px;
-	background-color: white;
-	box-shadow: 0 0 15px #000;
+	height: 100px;
+	padding: 0 40px;
+
+	/* Чистый стиль без затемнения */
+	background-color: #ffffff;
+	z-index: 1000;
+
+	/* Вместо густой тени — легкая грань */
+	border-bottom: 1px solid #eeeeee;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+/* Стилизация всех тегов <a> внутри хедера */
+.header a {
+	text-decoration: none; /* Убираем подчеркивание */
+	color: #333333; /* Насыщенный серый */
+	font-size: 16px;
+	font-weight: 500;
+	transition:
+		color 0.2s ease,
+		opacity 0.2s ease;
+}
+
+/* Эффект при наведении */
+.header a:hover {
+	color: #007bff; /* Синий акцент */
+	opacity: 0.8;
 }
 
 .discription {
 	font-style: italic;
+	color: #888888;
+	font-size: 14px;
 }

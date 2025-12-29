@@ -1,0 +1,102 @@
+.pageContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 80vh;
+	padding: 20px;
+	background-color: #f4f7f6;
+}
+
+/* Карточка профиля */
+.profileCard {
+	background: #ffffff;
+	padding: 40px;
+	border-radius: 16px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+	width: 100%;
+	max-width: 450px;
+	text-align: center;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 30px;
+	color: #2d3436;
+	border-bottom: 2px solid #eee;
+	padding-bottom: 10px;
+}
+
+/* Стили для текстовых полей */
+.infoGroup {
+	text-align: left;
+	margin-bottom: 25px;
+}
+
+.infoItem {
+	font-size: 16px;
+	margin: 12px 0;
+	color: #636e72;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.infoItem strong {
+	color: #2d3436;
+}
+
+/* Группа кнопок и ссылок */
+.actionGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 30px;
+}
+
+/* Базовый стиль для ссылок-кнопок */
+.linkBtn,
+.backBtn {
+	display: block;
+	padding: 12px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+/* Кнопка Редактировать */
+.editBtn {
+	background-color: #0984e3;
+	color: white;
+}
+
+.editBtn:hover {
+	background-color: #74b9ff;
+	transform: translateY(-2px);
+}
+
+/* Вторичные ссылки (Мои товары, Отзывы) */
+.secondaryLink {
+	background-color: #f1f2f6;
+	color: #2f3542;
+}
+
+.secondaryLink:hover {
+	background-color: #dfe4ea;
+}
+
+/* Кнопка Назад */
+.backBtn {
+	background-color: transparent;
+	color: #a4b0be;
+	border: 1px solid #dfe4ea;
+}
+
+.backBtn:hover {
+	color: #2f3542;
+	border-color: #2f3542;
+}

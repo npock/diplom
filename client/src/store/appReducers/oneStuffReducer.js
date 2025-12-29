@@ -36,10 +36,9 @@ export const fetchOneStuff = (id) => async (dispatch) => {
 		type: 'FETCH__ONESTUFF__LOADING',
 	});
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/stuff/${id}`,
-			{ credentials: 'include' },
-		);
+		const response = await fetch(`/api/v1/stuff/${id}`, {
+			credentials: 'include',
+		});
 		if (!response.ok) {
 			throw new Error('Something went wrong');
 		}

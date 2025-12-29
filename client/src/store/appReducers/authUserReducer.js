@@ -8,6 +8,8 @@ const initialUserState = {
 	error: null,
 };
 
+// http://localhost:3005
+
 export const authUserReducer = (
 	state = initialUserState,
 	{ type, payload },
@@ -128,15 +130,12 @@ export const register = (payload) => async (dispatch, state, extra) => {
 	});
 
 	try {
-		const response = await fetch(
-			'http://localhost:3005/api/v1/auth/register',
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				credentials: 'include',
-				body: JSON.stringify(payload),
-			},
-		);
+		const response = await fetch('/api/v1/auth/register', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
+			body: JSON.stringify(payload),
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}
@@ -159,16 +158,13 @@ export const login = (payload) => async (dispatch, state, extra) => {
 		type: 'LOGIN_LOADING',
 	});
 	try {
-		const response = await fetch(
-			'http://localhost:3005/api/v1/auth/login',
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				credentials: 'include',
+		const response = await fetch('/api/v1/auth/login', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
 
-				body: JSON.stringify(payload),
-			},
-		);
+			body: JSON.stringify(payload),
+		});
 		if (!response.ok) {
 			const errorData = await response.json();
 
@@ -192,13 +188,10 @@ export const logOut = () => async (dispatch) => {
 		type: 'LOGOUT_LOADING',
 	});
 	try {
-		const response = await fetch(
-			'http://localhost:3005/api/v1/auth/logout',
-			{
-				method: 'POST',
-				credentials: 'include',
-			},
-		);
+		const response = await fetch('/api/v1/auth/logout', {
+			method: 'POST',
+			credentials: 'include',
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}
@@ -216,7 +209,7 @@ export const getMe = () => async (dispatch) => {
 		type: 'GET_ME_LOADING',
 	});
 	try {
-		const response = await fetch('http://localhost:3005/api/v1/auth/me', {
+		const response = await fetch('/api/v1/auth/me', {
 			credentials: 'include',
 		});
 		if (!response.ok) {
@@ -239,18 +232,15 @@ export const updateAuthUserAsync = (id, payload) => async (dispatch) => {
 		type: 'UPDATE_AUTH_USER_LOADING',
 	});
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/auth/${id}`,
-			{
-				method: 'PATCH',
+		const response = await fetch(`/api/v1/auth/${id}`, {
+			method: 'PATCH',
 
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8',
-				},
-				credentials: 'include',
-				body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
 			},
-		);
+			credentials: 'include',
+			body: JSON.stringify(payload),
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}

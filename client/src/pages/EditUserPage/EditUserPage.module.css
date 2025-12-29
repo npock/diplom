@@ -1,0 +1,66 @@
+.pageContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 85vh;
+	padding: 20px;
+	background-color: #f8fafc;
+}
+
+.editCard {
+	background: #ffffff;
+	padding: 35px;
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+	width: 100%;
+	max-width: 420px;
+}
+
+.title {
+	font-size: 26px;
+	font-weight: 800;
+	margin-bottom: 25px;
+	color: #1e293b;
+	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.metaInfo {
+	margin-top: 25px;
+	padding-top: 20px;
+	border-top: 1px solid #f1f5f9;
+	font-size: 14px;
+	color: #64748b;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.footer {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.backBtn {
+	background-color: transparent;
+	border: 1px solid #cbd5e1;
+	padding: 10px;
+	border-radius: 10px;
+	color: #64748b;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+	background-color: #f1f5f9;
+	color: #1e293b;
+	border-color: #94a3b8;
+}

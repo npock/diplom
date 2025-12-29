@@ -156,9 +156,7 @@ export const fetchStuff =
 		}).toString();
 
 		try {
-			const response = await fetch(
-				`http://localhost:3005/api/v1/stuff?${queryString}`,
-			);
+			const response = await fetch(`/api/v1/stuff?${queryString}`);
 			const { data, message } = await response.json();
 			console.log(message);
 			dispatch({ type: 'FETCH_STUFFS_SUCCESS', payload: data });
@@ -172,7 +170,7 @@ export const fetchStuffByIds = (stuff) => async (dispatch) => {
 		type: 'FETCH__STUFF__BYID__LOADING',
 	});
 	try {
-		const response = await fetch('http://localhost:3005/api/v1/stuff/', {
+		const response = await fetch('/api/v1/stuff/', {
 			credentials: 'include',
 		});
 		if (!response.ok) {
@@ -204,17 +202,14 @@ export const updateStuffAsync =
 			type: 'UPDATE__STUFF__LOADING',
 		});
 		try {
-			const response = await fetch(
-				`http://localhost:3005/api/v1/stuff/${id}`,
-				{
-					method: 'PATCH',
-					body: JSON.stringify({ ...payload }),
-					credentials: 'include',
-					headers: {
-						'Content-type': 'application/json; charset=UTF-8',
-					},
+			const response = await fetch(`/api/v1/stuff/${id}`, {
+				method: 'PATCH',
+				body: JSON.stringify({ ...payload }),
+				credentials: 'include',
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
 				},
-			);
+			});
 			if (!response.ok) {
 				throw new Error('Something went wrong');
 			}
@@ -237,7 +232,7 @@ export const updateStuffAsync =
 export const addStuffAsync = (stuffData) => async (dispatch, state, extra) => {
 	dispatch({ type: 'CREATE_STUFF_LOADING' });
 	try {
-		const response = await fetch('http://localhost:3005/api/v1/stuff', {
+		const response = await fetch('/api/v1/stuff', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(stuffData),
@@ -261,14 +256,11 @@ export const deleteStuffAsync = (id) => async (dispatch, state, extra) => {
 		type: 'DELETE__STUFF__LOADING',
 	});
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/stuff/${id}`,
-			{
-				method: 'DELETE',
+		const response = await fetch(`/api/v1/stuff/${id}`, {
+			method: 'DELETE',
 
-				credentials: 'include',
-			},
-		);
+			credentials: 'include',
+		});
 		if (!response.ok) {
 			const errorData = await response.json();
 			throw new Error(errorData.message);

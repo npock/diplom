@@ -42,7 +42,10 @@ export const Review = ({ rev }) => {
 						placeholder="ваш отзыв..."
 						required
 					/>
-					<button onClick={() => handleUpdate(rev._id)}>
+					<button
+						className={style.submitBtn}
+						onClick={() => handleUpdate(rev._id)}
+					>
 						Сохранить
 					</button>
 					<button onClick={() => setEditingId(null)}>Отмена</button>
@@ -74,13 +77,13 @@ export const Review = ({ rev }) => {
 								className={style.editBtn}
 								onClick={() => handleEditStart(rev)}
 							>
-								✏️
+								изменить
 							</button>
 							<button
 								className={style.deleteBtn}
 								onClick={() => removeReviewRed(rev)}
 							>
-								🗑️
+								удалить
 							</button>
 						</div>
 					)}

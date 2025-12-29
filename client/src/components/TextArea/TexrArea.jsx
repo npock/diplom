@@ -1,4 +1,4 @@
-import style from './Textarea.module.css'; // Импорт стилей
+import style from './TextArea.module.css'; // Импорт стилей
 export const TextArea = ({
 	label,
 	name,

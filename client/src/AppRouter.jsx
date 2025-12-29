@@ -15,6 +15,7 @@ import { EditStuffPage } from './pages/StuffPage/EditStuffPage/EditStuffPage';
 import { ModeratorRoute } from './ModeratorRote';
 import { SaleStuff } from './pages/SaleStuff/SaleStuff';
 import { MyReviews } from './pages/UserPage/MyReviews/MyReviews';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 export const router = createBrowserRouter([
 	{
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/myReviews',
 				element: <MyReviews />,
+			},
+			{
+				path: '*',
+				element: <NotFoundPage />,
 			},
 		],
 	},

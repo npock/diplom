@@ -122,15 +122,12 @@ export const addReviewAsync = (stuffId, reviewData) => async (dispatch) => {
 	dispatch({ type: 'ADD_REVIEW_LOADING' });
 
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/stuff/${stuffId}/reviews`,
-			{
-				method: 'POST',
-				body: JSON.stringify(reviewData),
-				headers: { 'Content-Type': 'application/json' },
-				credentials: 'include',
-			},
-		);
+		const response = await fetch(`/api/v1/stuff/${stuffId}/reviews`, {
+			method: 'POST',
+			body: JSON.stringify(reviewData),
+			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
+		});
 		const { data, message } = await response.json();
 		console.log(message);
 		if (response.ok) {
@@ -145,9 +142,7 @@ export const addReviewAsync = (stuffId, reviewData) => async (dispatch) => {
 export const fetchReviews = (stuffId) => async (dispatch) => {
 	dispatch({ type: 'FETCH_REVIEWS_LOADING' });
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/stuff/${stuffId}/reviews`,
-		);
+		const response = await fetch(`/api/v1/stuff/${stuffId}/reviews`);
 		const { data, message } = await response.json();
 		console.log(message);
 
@@ -161,13 +156,10 @@ export const removeReview = (reviewId) => async (dispatch) => {
 	if (!window.confirm('Удалить отзыв?')) return;
 	dispatch({ type: 'REMOVE_REVIEW_ISLOADING' });
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/reviews/${reviewId}`,
-			{
-				method: 'DELETE',
-				credentials: 'include',
-			},
-		);
+		const response = await fetch(`/api/v1/reviews/${reviewId}`, {
+			method: 'DELETE',
+			credentials: 'include',
+		});
 		const { message } = await response.json();
 		console.log(message);
 		dispatch({ type: 'REMOVE_REVIEW_SUCCESS', payload: reviewId });
@@ -181,15 +173,12 @@ export const updateReview = (reviewId, updateData) => async (dispatch) => {
 	dispatch({ type: 'UPDATE_REVIEW_ISLOADING' });
 
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/reviews/${reviewId}`,
-			{
-				method: 'PATCH',
-				body: JSON.stringify(updateData),
-				headers: { 'Content-Type': 'application/json' },
-				credentials: 'include',
-			},
-		);
+		const response = await fetch(`/api/v1/reviews/${reviewId}`, {
+			method: 'PATCH',
+			body: JSON.stringify(updateData),
+			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
+		});
 		const { data, message } = await response.json();
 		console.log(message);
 		dispatch({ type: 'UPDATE_REVIEW_SUCCESS', payload: data });
@@ -202,12 +191,9 @@ export const updateReview = (reviewId, updateData) => async (dispatch) => {
 export const fetchMyReviews = () => async (dispatch) => {
 	dispatch({ type: 'FETCH_MY_REVIEWS_LOADING' });
 	try {
-		const response = await fetch(
-			'http://localhost:3005/api/v1/reviews/my-reviews',
-			{
-				credentials: 'include',
-			},
-		);
+		const response = await fetch('/api/v1/reviews/my-reviews', {
+			credentials: 'include',
+		});
 		const { data, message } = await response.json();
 		console.log(message);
 		dispatch({ type: 'FETCH_MY_REVIEWS_SUCCESS', payload: data });

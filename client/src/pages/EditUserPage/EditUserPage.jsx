@@ -5,21 +5,20 @@ import { validator } from '../utils/validator';
 import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { updateAuthUserAsync } from '../../store/appReducers';
+import styles from './EditUserPage.module.css';
 
 export const EditUserPage = () => {
 	const authUser = useSelector((state) => state.user.authUser);
 	const isLoadingUser = useSelector((state) => state.user.isLoading);
 	const userError = useSelector((state) => state.user.error);
-
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [userData, setUserData] = useState({
 		name: authUser?.name || '',
 		email: authUser?.email || '',
 	});
 	const [formError, setFormError] = useState({});
-
-	const dispatch = useDispatch();
 
 	const userSchema = {
 		email: {
@@ -42,16 +41,13 @@ export const EditUserPage = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const isValid = validate(userData);
-		if (!isValid) return;
-		console.log(userData);
+		const isValidForm = validate(userData);
+		if (!isValidForm) return;
 		dispatch(updateAuthUserAsync(authUser._id, userData));
 	};
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
-
 		setUserData({ ...userData, [name]: value });
 		validate({ ...userData, [name]: value });
 	};
@@ -65,24 +61,29 @@ export const EditUserPage = () => {
 		}
 	}, [authUser]);
 
-	if (isLoadingUser) {
-		return <span>...loading</span>;
-	}
-	if (userError) {
-		return <span>smth went wrong</span>;
-	}
+	if (isLoadingUser)
+		return (
+			<div className={styles.pageContainer}>
+				<span>...loading</span>
+			</div>
+		);
+	if (userError)
+		return (
+			<div className={styles.pageContainer}>
+				<span>smth went wrong</span>
+			</div>
+		);
 
 	return (
-		<div className="">
-			<h3 className="">User Profile</h3>
+		<div className={styles.pageContainer}>
+			<div className={styles.editCard}>
+				<h3 className={styles.title}>Edit Profile</h3>
 
-			<div className="">
-				<form onSubmit={handleSubmit}>
-					<h2>Редактирование</h2>
+				<form onSubmit={handleSubmit} className={styles.form}>
 					<TextField
 						name="email"
-						label="Email"
-						placeholder="Введите Email"
+						label="Электронная почта"
+						placeholder="example@mail.com"
 						value={userData?.email}
 						onChange={handleChange}
 						error={formError?.email}
@@ -90,24 +91,36 @@ export const EditUserPage = () => {
 					/>
 					<TextField
 						name="name"
-						label="Имя"
-						placeholder="Введите ваше имя..."
+						label="Ваше имя"
+						placeholder="Введите имя"
 						value={userData?.name}
 						onChange={handleChange}
 						error={formError?.name}
 						type="text"
 					/>
-					<Button disabled={!isValid} type="submit">
-						сохранить
-					</Button>
+					<div className={styles.footer}>
+						<Button disabled={!isValid} type="submit">
+							Сохранить изменения
+						</Button>
+						<button
+							type="button"
+							className={styles.backBtn}
+							onClick={() => navigate(-1)}
+						>
+							← Отмена
+						</button>
+					</div>
 				</form>
 
-				<p className=""> Дата регистрации: {authUser?.createdAt}</p>
-				<p className=""> Role: {authUser?.role}</p>
-
-				<button className="" onClick={() => navigate(-1)}>
-					back
-				</button>
+				<div className={styles.metaInfo}>
+					<p>
+						📅 <strong>Регистрация:</strong>{' '}
+						{new Date(authUser?.createdAt).toLocaleDateString()}
+					</p>
+					<p>
+						🛡️ <strong>Роль:</strong> {authUser?.role}
+					</p>
+				</div>
 			</div>
 		</div>
 	);

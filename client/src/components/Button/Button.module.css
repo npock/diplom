@@ -1,0 +1,11 @@
+.btn {
+	align-self: flex-end;
+	padding: 10px 24px;
+	background: #3b82f6;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}

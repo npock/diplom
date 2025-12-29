@@ -105,12 +105,9 @@ export const fetchUsers = () => async (dispatch) => {
 		payload: true,
 	});
 	try {
-		const response = await fetch(
-			'http://localhost:3005/api/v1/users/users',
-			{
-				credentials: 'include',
-			},
-		);
+		const response = await fetch('/api/v1/users/users', {
+			credentials: 'include',
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}
@@ -128,47 +125,21 @@ export const fetchUsers = () => async (dispatch) => {
 		});
 	}
 };
-export const getUserById = (id) => async (dispatch) => {
-	dispatch({
-		type: 'FETCH__USER__LOADING',
-		payload: true,
-	});
-	try {
-		const response = await fetch(`http://localhost:3000/users/${id}`);
-		if (!response.ok) {
-			throw new Error(response.statusText);
-		}
-		const data = await response.json();
-		dispatch({
-			type: 'FETCH__USER__SUCCESS',
-			payload: { user: data, isLoading: false },
-		});
-	} catch (error) {
-		console.log(error);
-		dispatch({
-			type: 'FETCH__USER__ERROR',
-			payload: 'something went wrong in server',
-		});
-	}
-};
 
 export const updateRoleUserAsync = (id, payload) => async (dispatch) => {
 	dispatch({
 		type: 'UPDATE__ROLE__USER__LOADING',
 	});
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/users/${id}`,
-			{
-				method: 'PATCH',
+		const response = await fetch(`/api/v1/users/${id}`, {
+			method: 'PATCH',
 
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8',
-				},
-				credentials: 'include',
-				body: JSON.stringify(payload),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
 			},
-		);
+			credentials: 'include',
+			body: JSON.stringify(payload),
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}
@@ -192,14 +163,11 @@ export const deleteUser = (id) => async (dispatch) => {
 		type: 'DELETE__USER__LOADING',
 	});
 	try {
-		const response = await fetch(
-			`http://localhost:3005/api/v1/users/${id}`,
-			{
-				method: 'DELETE',
+		const response = await fetch(`/api/v1/users/${id}`, {
+			method: 'DELETE',
 
-				credentials: 'include',
-			},
-		);
+			credentials: 'include',
+		});
 		if (!response.ok) {
 			const errorData = await response.json();
 			throw new Error(errorData.message);
