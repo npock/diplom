@@ -159,7 +159,7 @@ export const EditStuffPage = () => {
 					{isLoading && !isValid ? 'Загрузка...' : 'Сохранить'}
 				</Button>
 				<Button
-					variant="delete"
+					variant="danger"
 					onClick={() => dispatch(deleteStuffAsync(id))}
 				>
 					Delete
