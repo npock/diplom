@@ -34,7 +34,7 @@ export const RoleEdit = ({ role, id }) => {
 						value={newRole.role}
 					/>
 				}
-				<Button className="primary" type="submit">
+				<Button variant="primary" type="submit">
 					Сохранить
 				</Button>
 			</form>
