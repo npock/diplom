@@ -9,3 +9,14 @@
 	cursor: pointer;
 	transition: background 0.2s;
 }
+.delete {
+	align-self: flex-end;
+	padding: 10px 24px;
+	background: rgb(241, 83, 83);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}

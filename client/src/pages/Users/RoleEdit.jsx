@@ -33,9 +33,9 @@ export const RoleEdit = ({ role, id }) => {
 						value={newRole.role}
 					/>
 				}
-				<button className="" type="submit">
+				<Button className="" type="submit">
 					Сохранить
-				</button>
+				</Button>
 			</form>
 		</>
 	);

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { deleteUser, fetchUsers } from '../../store/appReducers';
 import { RoleEdit } from './RoleEdit';
+import { Button } from '../../components/Button/Button';
 
 export const Users = () => {
 	const dispatch = useDispatch();
@@ -41,9 +42,12 @@ export const Users = () => {
 			component: (item) => {
 				if (item.role !== 'admin')
 					return (
-						<button onClick={() => dispatch(deleteUser(item._id))}>
+						<Button
+							className={'delete'}
+							onClick={() => dispatch(deleteUser(item._id))}
+						>
 							Удалить
-						</button>
+						</Button>
 					);
 			},
 		},

@@ -86,6 +86,13 @@ export const EditStuffPage = () => {
 			});
 		}
 	}, [stuff]);
+	const containerStyle = {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		minHeight: '80vh',
+	};
 
 	const isAuthor = authUser?._id === stuff?.author;
 	const isAdmin = authUser?.role === 'admin';
@@ -106,7 +113,7 @@ export const EditStuffPage = () => {
 	}
 
 	return (
-		<div className="container">
+		<div className="container" style={containerStyle}>
 			<h2>Добавление нового товара</h2>
 			<form onSubmit={handleSubmit}>
 				<TextField
@@ -151,9 +158,12 @@ export const EditStuffPage = () => {
 				<Button type="submit" disabled={!isValid && isLoading}>
 					{isLoading && !isValid ? 'Загрузка...' : 'Сохранить'}
 				</Button>
-				<button onClick={() => dispatch(deleteStuffAsync(id))}>
+				<Button
+					className={'delete'}
+					onClick={() => dispatch(deleteStuffAsync(id))}
+				>
 					Delete
-				</button>
+				</Button>
 			</form>
 		</div>
 	);
