@@ -117,7 +117,7 @@ export const NewStuffPage = () => {
 				/>
 
 				<Button type="submit" disabled={!isValid || isLoading}>
-					{isLoading || !isValid ? 'Загрузка...' : 'Добавить товар'}
+					{isLoading ? 'Загрузка...' : 'Добавить товар'}
 				</Button>
 			</form>
 		</div>

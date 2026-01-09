@@ -48,7 +48,12 @@ export const Review = ({ rev }) => {
 					>
 						Сохранить
 					</button>
-					<button onClick={() => setEditingId(null)}>Отмена</button>
+					<button
+						className={style.cancelBtn}
+						onClick={() => setEditingId(null)}
+					>
+						Отмена
+					</button>
 				</>
 			) : (
 				<>
