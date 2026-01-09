@@ -12,8 +12,8 @@
 	font-size: 16px; /* 18px может быть многовато для высоты 32px */
 	width: 150px;
 	height: 32px;
-	color: #000;
-	background-color: blue;
+	background-color: #3b82f6;
+	color: white;
 	border: 1px solid #749dea;
 	border-radius: 6px; /* Немного скруглим углы для современного вида */
 	cursor: pointer;
