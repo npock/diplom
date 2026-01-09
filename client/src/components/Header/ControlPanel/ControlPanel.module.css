@@ -13,8 +13,8 @@
 	width: 150px;
 	height: 32px;
 	color: #000;
-	background-color: #eee;
-	border: 1px solid #000;
+	background-color: blue;
+	border: 1px solid #749dea;
 	border-radius: 6px; /* Немного скруглим углы для современного вида */
 	cursor: pointer;
 	transition: all 0.2s ease; /* Плавный переход при наведении */

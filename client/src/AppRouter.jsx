@@ -85,7 +85,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/newStuff',
-				element: <NewStuffPage />,
+				element: (
+					<IsAuthRoute>
+						<NewStuffPage />
+					</IsAuthRoute>
+				),
 			},
 			{
 				path: '/basket',
