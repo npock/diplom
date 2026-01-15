@@ -122,7 +122,7 @@ export const addReviewAsync = (stuffId, reviewData) => async (dispatch) => {
 	dispatch({ type: 'ADD_REVIEW_LOADING' });
 
 	try {
-		const response = await fetch(`/api/v1/stuff/reviews`, {
+		const response = await fetch(`/api/v1/reviews`, {
 			method: 'POST',
 			body: JSON.stringify({ reviewData, stuffId }),
 			headers: { 'Content-Type': 'application/json' },

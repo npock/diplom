@@ -10,7 +10,7 @@ reviewRouter.post("/", isAuth, async (req, res) => {
     const newReview = await Review.create({
       text: reviewData.text,
       rating: reviewData.rating,
-      author: reviewData._id, // Из isAuth
+      author: req.user._id, // Из isAuth
       stuffId: stuffId,
     });
 
