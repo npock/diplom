@@ -2,7 +2,7 @@ import { Router } from "express";
 import { Stuff } from "../model/stuff.model.js";
 import { isAuth } from "../middleweare/isAuth.js";
 import { checkRole } from "../middleweare/checkRole.js";
-import { reviewRouter } from "./review.route.js";
+// import { reviewRouter } from "./review.route.js";
 
 export const stuffRouter = Router();
 
@@ -60,7 +60,9 @@ stuffRouter.post(
       res.status(201).json({ data: newStuff, message: "stuff created" });
     } catch (error) {
       if (error.name === "ValidationError") {
-        res.status(400).json({ message: "Заполните все обязательные поля" });
+        return res
+          .status(400)
+          .json({ message: "Заполните все обязательные поля" });
       }
       res.status(500).json({ message: "Ошибка при создании товара" });
     }
@@ -146,4 +148,4 @@ stuffRouter.patch(
   }
 );
 
-stuffRouter.use("/:id/reviews", reviewRouter);
+// stuffRouter.use("/:id/reviews", reviewRouter);

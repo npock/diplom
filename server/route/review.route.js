@@ -6,11 +6,12 @@ export const reviewRouter = Router({ mergeParams: true });
 
 reviewRouter.post("/", isAuth, async (req, res) => {
   try {
+    const { reviewData, stuffId } = req.body;
     const newReview = await Review.create({
-      text: req.body.text,
-      rating: req.body.rating,
-      author: req.user._id, // Из isAuth
-      stuffId: req.params.id,
+      text: reviewData.text,
+      rating: reviewData.rating,
+      author: reviewData._id, // Из isAuth
+      stuffId: stuffId,
     });
 
     const populatedReview = await newReview.populate("author", "name");
@@ -20,13 +21,19 @@ reviewRouter.post("/", isAuth, async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 });
-reviewRouter.get("/", async (req, res) => {
+reviewRouter.post("/filter", async (req, res) => {
   try {
-    const reviews = await Review.find({ stuffId: req.params.id })
+    const { stuffId } = req.body; // Извлекаем stuffId из тела запроса
+
+    if (!stuffId) {
+      return res.status(400).json({ message: "stuffId обязателен" });
+    }
+
+    const reviews = await Review.find({ stuffId: stuffId })
       .populate("author", "name")
       .sort({ createdAt: -1 }); // Новые сверху
 
-    res.json({ data: reviews, message: "reviews" });
+    res.json({ data: reviews, message: "filtered reviews" });
   } catch (error) {
     res.status(500).json({ message: "Ошибка получения отзывов" });
   }
