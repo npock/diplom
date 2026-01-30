@@ -40,9 +40,9 @@ export const router = createBrowserRouter([
 						path: 'edit',
 
 						element: (
-							<ModeratorRoute>
-								<EditStuffPage />
-							</ModeratorRoute>
+							// <ModeratorRoute>
+							<EditStuffPage />
+							// </ModeratorRoute>
 						),
 					},
 				],

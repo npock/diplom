@@ -18,6 +18,7 @@ export const EditStuffPage = () => {
 	const authUser = useSelector((state) => state.user.authUser);
 	const error = useSelector((state) => state.oneStuff.error);
 	const isLoading = useSelector((state) => state.oneStuff.isLoading);
+	console.log(authUser);
 
 	const [data, setData] = useState({
 		name: stuff?.name,
