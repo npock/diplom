@@ -5,15 +5,14 @@ export const ModeratorRoute = ({ children }) => {
 	const user = useSelector((state) => state.user.authUser);
 	const isLoading = useSelector((state) => state.user.isLoading);
 	const error = useSelector((state) => state.user.error);
-
+	console.log(user);
 	if (isLoading) {
 		return <div>Загрузка...</div>;
 	}
 	if (error) {
 		return <div>error</div>;
 	}
-	if (!user || user.role !== 'admin' || user.role !== 'moderator') {
-		console.log(user);
+	if (!user || (user.role !== 'admin' && user.role !== 'moderator')) {
 		return <Navigate to={'/'} replace />;
 	}
 
