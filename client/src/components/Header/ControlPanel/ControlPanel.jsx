@@ -52,6 +52,13 @@ export const ControlPanel = () => {
 						</Link>
 					</>
 				) : null}
+				{role === 'moderator' ? (
+					<>
+						<Link to="/newStuff">
+							<Icon id="fa-plus" margin="10px 0 0 15px" />
+						</Link>
+					</>
+				) : null}
 
 				<Link to="/basket">
 					<Icon id="fa-shopping-bag" margin="10px 0 0 15px" />
