@@ -12,7 +12,7 @@ export const ModeratorRoute = ({ children }) => {
 	if (error) {
 		return <div>error</div>;
 	}
-	if (!user || user.role !== 'admin' || user.role !== 'admin') {
+	if (!user || user.role !== 'admin' || user.role !== 'moderator') {
 		return <Navigate to={'/'} replace />;
 	}
 
