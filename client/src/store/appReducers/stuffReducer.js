@@ -1,11 +1,11 @@
-const initialUserState = {
+const initialStuffState = {
 	isLoading: true,
 	error: null,
 	stuff: [],
 	productsInBasket: [],
 };
 
-export const stuffReducer = (state = initialUserState, { type, payload }) => {
+export const stuffReducer = (state = initialStuffState, { type, payload }) => {
 	switch (type) {
 		case 'FETCH_STUFFS_SUCCESS': {
 			return {

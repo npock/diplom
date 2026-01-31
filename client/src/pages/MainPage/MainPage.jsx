@@ -13,9 +13,15 @@ export const MainPage = () => {
 	const sort = searchParams.get('sort') || '';
 	const page = Number(searchParams.get('page')) || 1;
 
-	const { stuff, error, totalPages, isLoading } = useSelector(
-		(state) => state.stuff,
-	);
+	// const { stuff, error, totalPages, isLoading } = useSelector(
+	// 	(state) => state.stuff,
+	// );
+
+	const stuff = useSelector((state) => state.stuff.stuff);
+	const error = useSelector((state) => state.stuff.error);
+	const totalPages = useSelector((state) => state.stuff.totalPages);
+	const isLoading = useSelector((state) => state.stuff.isLoading);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -37,9 +43,6 @@ export const MainPage = () => {
 		setSearchParams({ search, sort, page: p });
 		window.scrollTo(0, 0);
 	};
-
-	if (isLoading) return <div>Загрузка...</div>;
-	if (error) return <h1>{error}</h1>;
 
 	return (
 		<div>
