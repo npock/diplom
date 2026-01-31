@@ -3,14 +3,17 @@
 	gap: 8px;
 	flex: 1;
 	margin-bottom: 10px;
+	min-width: 200px; /* Чтобы форма не превратилась в "тыкву" на узких экранах */
 }
 
 .input {
 	flex: 1;
+	min-width: 0; /* Магическая строчка: лечит баги с вылетом текста в flex-боксах */
 	padding: 10px 16px;
 	border: 2px solid #e5e7eb;
 	border-radius: 10px;
 	outline: none;
+	box-sizing: border-box; /* Гарантирует, что 16px паддинга всегда будут внутри */
 }
 
 .input:focus {

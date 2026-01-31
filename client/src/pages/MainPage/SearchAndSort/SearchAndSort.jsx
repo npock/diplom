@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import style from './SearchAndSort.module.css';
 
-export const SearchAndSort = ({ currentSort, onSearch, onSort }) => {
-	const [tempSearch, setTempSearch] = useState('');
+export const SearchAndSort = ({
+	currentSort,
+	onSearch,
+	onSort,
+	initialSearch,
+}) => {
+	const [tempSearch, setTempSearch] = useState(initialSearch || '');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
